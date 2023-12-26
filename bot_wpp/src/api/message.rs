@@ -2,7 +2,7 @@ use crate::{repository::model::DriverModel, AppState};
 use actix_web::{
     post,
     web::Data,
-    HttpResponse, Responder,
+    HttpResponse, Responder, get,
 };
 use serde_json::json;
 
@@ -42,3 +42,8 @@ pub async fn send_message(data: Data<AppState>) -> impl Responder {
     }
 }
 
+
+#[get("/")]
+pub async fn teste() -> impl Responder {
+    HttpResponse::Ok().json("value")
+}
