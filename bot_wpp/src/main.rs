@@ -40,7 +40,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(AppState {db: pool.clone()}))
             .configure(services::config)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind((str::env::var("HOST"), str::env::var("PORT")))?
     .run()
     .await
 }  
