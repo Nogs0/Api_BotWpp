@@ -35,12 +35,13 @@ async fn main() -> std::io::Result<()> {
         }
     };
 
+    let host = std::env::var("HOST").expect("HOST MUST TO BE SET");
     HttpServer::new( move || {
         App::new()
             .app_data(web::Data::new(AppState {db: pool.clone()}))
             .configure(services::config)
     })
-    .bind((str::env::var("HOST"), str::env::var("PORT")))?
+    .bind((host, 8080))?
     .run()
     .await
 }  
